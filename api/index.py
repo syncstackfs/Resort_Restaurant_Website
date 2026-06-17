@@ -1,12 +1,11 @@
-import os
-import sys
+import os, sys
 
-# Add the msresort directory to Python path
-# From api/index.py, go up one level (..) then into msresort/
-msresort_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'msresort')
-msresort_dir = os.path.abspath(msresort_dir)
-
-sys.path.insert(0, msresort_dir)
+# Vercel clones repo to /vercel/path0/
+# Our Django app is at /vercel/path0/msresort/
+# The msresort package is at /vercel/path0/msresort/msresort/
+repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+django_root = os.path.join(repo_root, 'msresort')
+sys.path.insert(0, django_root)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'msresort.settings')
 
