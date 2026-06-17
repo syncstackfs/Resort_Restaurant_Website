@@ -1,13 +1,12 @@
 import os, sys
 
-# Vercel clones repo to /vercel/path0/
-# Our Django app is at /vercel/path0/msresort/
-# The msresort package is at /vercel/path0/msresort/msresort/
-repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-django_root = os.path.join(repo_root, 'msresort')
-sys.path.insert(0, django_root)
+# /vercel/path0/api/index.py  -> go up to /vercel/path0/ then into msresort/
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(root, 'msresort'))
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'msresort.settings')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'msresort.settings'
+os.environ['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'ms-resort-vercel-2026')
+os.environ['DEBUG'] = 'False'
 
 from django.core.wsgi import get_wsgi_application
 app = get_wsgi_application()

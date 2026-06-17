@@ -1,15 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/index.py", "use": "@vercel/python" }
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/msresort/static/" },
-    { "src": "/(.*)", "dest": "api/index.py" }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "msresort.settings",
-    "DEBUG": "False",
-    "SECRET_KEY": "ms-resort-prod-2026-xkQ9p"
-  }
+    {
+      "src": "/(.*)",
+      "dest": "api/index.py"
+    }
+  ]
 }
