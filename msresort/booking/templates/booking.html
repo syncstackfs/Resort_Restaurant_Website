@@ -1,0 +1,379 @@
+  {% load static %}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your Stay — Mountain Shadow Resort</title>
+    <meta name="description" content="Reserve your luxury escape at Mountain Shadow Resort. Choose your dates, room type, and experience unparalleled hospitality." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      /* ---- Booking Page Specific ---- */
+      .booking-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 1.5rem 4rem;
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 55%),
+          var(--dark);
+      }
+
+      .booking-card {
+        width: 100%;
+        max-width: 560px;
+        background: rgba(20, 20, 20, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        padding: clamp(2rem, 5vw, 3.5rem);
+        animation: fadeUp 1s ease-out;
+      }
+
+      .booking-card__badge {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--glass-border);
+        padding: 6px 20px;
+        margin-bottom: 1.5rem;
+        border-radius: 2px;
+      }
+
+      .booking-card__title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        color: var(--white);
+        margin-bottom: 0.5rem;
+      }
+
+      .booking-card__subtitle {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.45);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      /* Form styles */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.55rem;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 14px 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.88rem;
+        color: var(--white);
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(201,168,76,0.2);
+        border-radius: 0;
+        outline: none;
+        transition: border-color var(--transition), background var(--transition);
+        -webkit-appearance: none;
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255,255,255,0.3);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--gold);
+        background: rgba(255,255,255,0.09);
+      }
+
+      .form-group select option {
+        background: #1a1a1a;
+        color: var(--white);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      /* Submit button */
+      .btn-submit {
+        width: 100%;
+        margin-top: 0.8rem;
+        padding: 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--dark);
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 35px rgba(201,168,76,0.4);
+      }
+
+      /* Back link */
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 2rem;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.4);
+        transition: color var(--transition);
+      }
+
+      .back-link:hover {
+        color: var(--gold-light);
+      }
+
+      /* Confirmation overlay */
+      .confirmation {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(16px);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .confirmation.show {
+        display: flex;
+      }
+
+      .confirmation__inner {
+        animation: fadeUp 0.6s ease-out;
+      }
+
+      .confirmation__icon {
+        font-size: 3rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .confirmation__title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: var(--white);
+        margin-bottom: 0.6rem;
+      }
+
+      .confirmation__text {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 520px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="navbar">
+      <a href="{% url 'home' %}" class="navbar__logo">
+         Mountain <span>Shadow</span>
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="navbar__menu" id="navMenu">
+        <li> <a href="{% url 'home' %}#gallery" class="navbar__link">Gallery</a></li>
+        <li> <a href="{% url 'home' %}#about" class="navbar__link">About</a></li>
+        <li> <a href="{% url 'home' %}#restaurant" class="navbar__link">Restaurant</a></li>
+        <li> <a href="{% url 'home' %}#reviews" class="navbar__link">Reviews</a></li>
+        <li> <a href="{% url 'booking' %}" class="navbar__link">booking</a></li>
+        <li> <a href="{% url 'home' %}#contact" class="navbar__link">Contact</a></li>
+      </ul> 
+    </nav>
+
+    <!-- ============ BOOKING FORM ============ -->
+    <main class="booking-page">
+      <div class="booking-card">
+        <span class="booking-card__badge">Reservations</span>
+        <h1 class="booking-card__title">Book Your Stay</h1>
+        <p class="booking-card__subtitle">Select your preferred dates and accommodation to begin your luxury escape.</p>
+
+  <form method="post" action="{% url 'booking' %}">
+            {% csrf_token %}
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+
+         <div class="form-group">
+            <label>PHONE NUMBER</label>
+            <input type="text" name="phone" placeholder="Enter phone number" required>
+         </div>
+
+         <div class="form-row">
+
+    <div class="form-group">
+        <label for="checkin">Check-In</label>
+
+        <input 
+            type="date"
+            id="checkin"
+            name="checkin"
+            required
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="checkout">Check-Out</label>
+
+        <input 
+            type="date"
+            id="checkout"
+            name="checkout"
+            required
+        />
+    </div>
+
+</div>        <div class="form-row">
+            <div class="form-group">
+              <label for="guests">Guests</label>
+              <select id="guests" name="guests">
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5+">5+ Guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="roomType">Room Type</label>
+              <select id="roomType" name="room">
+                <option value="deluxe">Deluxe Suite</option>
+                <option value="ocean">Ocean View Villa</option>
+                <option value="presidential">Presidential Suite</option>
+                <option value="beachfront">Beachfront Bungalow</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Confirm Reservation</button>
+        </form>
+
+        <a href="{% url 'home' %}" class="back-link">&#8592; Back to Home</a>
+      </div>
+    </main>
+
+    <!-- ============ CONFIRMATION OVERLAY ============ -->
+    <div class="confirmation" id="confirmation">
+      <div class="confirmation__inner">
+        <div class="confirmation__icon">✦</div>
+        <h2 class="confirmation__title">Reservation Received</h2>
+        <p class="confirmation__text">Thank you for choosing Mountain Shadow.<br/>We'll send a confirmation to your email shortly.</p>
+        <a href="{% url 'home' %}" class="btn-book"> style="animation:none;">
+          <span class="btn-book__text">Return Home</span>
+          <span class="btn-book__arrow">&#10230;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ SCRIPT ============ -->
+    <script>
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const navMenu   = document.getElementById('navMenu');
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+      document.querySelectorAll('.navbar__link').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.style.background = window.scrollY > 60 ? 'rgba(10,10,10,0.85)' : '';
+      });
+
+      // Form submission → show confirmation
+
+        // ===== DATE VALIDATION =====
+
+  const today = new Date();
+
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+
+  const minDate = `${yyyy}-${mm}-${dd}`;
+
+  const maxDateObj = new Date();
+  maxDateObj.setDate(maxDateObj.getDate() + 20);
+
+  const maxyyyy = maxDateObj.getFullYear();
+  const maxmm = String(maxDateObj.getMonth() + 1).padStart(2, '0');
+  const maxdd = String(maxDateObj.getDate()).padStart(2, '0');
+
+  const maxDate = `${maxyyyy}-${maxmm}-${maxdd}`;
+
+  const checkin = document.getElementById("checkin");
+  const checkout = document.getElementById("checkout");
+
+  checkin.min = minDate;
+  checkin.max = maxDate;
+
+  checkout.min = minDate;
+  checkout.max = maxDate;
+
+  checkin.addEventListener("change", () => {
+      checkout.min = checkin.value;
+  });
+    </script>
+
+  </body>
+  </html>
