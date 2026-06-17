@@ -1,19 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "msresort/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb" }
-    }
-  ],
-  "routes": [
-    { "src": "/static/(.*)", "dest": "/static/" },
-    { "src": "/(.*)", "dest": "msresort/wsgi.py" }
-  ],
+  "builds": [{ "src": "api/index.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }],
   "env": {
     "DJANGO_SETTINGS_MODULE": "msresort.settings",
     "DEBUG": "False",
-    "SECRET_KEY": "ms-resort-prod-secret-2026-xkQ9p"
+    "SECRET_KEY": "ms-resort-prod-2026-xkQ9p"
   }
 }
