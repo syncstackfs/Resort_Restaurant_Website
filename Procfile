@@ -1,0 +1,1 @@
+﻿web: cd msresort && python manage.py migrate && gunicorn --bind 0.0.0.0:$PORT msresort.wsgi:application
