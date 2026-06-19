@@ -311,7 +311,7 @@
         <div class="confirmation__icon">✦</div>
         <h2 class="confirmation__title">Reservation Received</h2>
         <p class="confirmation__text">Thank you for choosing Mountain Shadow.<br/>We'll send a confirmation to your email shortly.</p>
-        <a href="{% url 'home' %}" class="btn-book"> style="animation:none;">
+        <a href="{% url 'home' %}" class="btn-book" style="animation:none;">
           <span class="btn-book__text">Return Home</span>
           <span class="btn-book__arrow">&#10230;</span>
         </a>
@@ -319,30 +319,9 @@
     </div>
 
     <!-- ============ SCRIPT ============ -->
+    <script src="{% static 'js/main.js' %}" defer></script>
     <script>
-      // Mobile menu
-      const hamburger = document.getElementById('hamburger');
-      const navMenu   = document.getElementById('navMenu');
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
-      document.querySelectorAll('.navbar__link').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('active');
-          navMenu.classList.remove('active');
-        });
-      });
-
-      // Navbar scroll effect
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        navbar.style.background = window.scrollY > 60 ? 'rgba(10,10,10,0.85)' : '';
-      });
-
-      // Form submission → show confirmation
-
-        // ===== DATE VALIDATION =====
+      // Date validation for booking form
 
   const today = new Date();
 

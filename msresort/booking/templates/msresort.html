@@ -9,22 +9,20 @@
     <meta name="description"
         content="Experience unparalleled luxury at Mountain Shadow Resort. Pristine beaches, world-class dining, and unforgettable moments await you." />
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet" />
 
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
-    <!-- ============ NAVBAR ============ -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="navbar__logo">Mountain <span>Shadow</span></a>
+        <a href="{% url 'home' %}" class="navbar__logo">Mountain <span>Shadow</span></a>
 
         <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span>
@@ -37,25 +35,18 @@
             <li><a href="#about" class="navbar__link">About</a></li>
             <li><a href="#restaurant" class="navbar__link">Restaurant</a></li>
             <li><a href="#reviews" class="navbar__link">Reviews</a></li>
-            <li><a href="{% url 'booking' %}" class="navbar__link">booking</a></li>
+            <li><a href="{% url 'booking' %}" class="navbar__link">Booking</a></li>
             <li><a href="#contact" class="navbar__link">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
-        <!-- VIDEO BACKGROUND -->
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="{% static 'videos/mssha.mp4' %}" type="video/mp4">
-</video>
-        <div class="hero__bg">
-            <source src="" alt="Luxury beach at Mountain Shadow Resort" />
-        </div>
+        <video autoplay muted loop playsinline class="hero-video" preload="auto">
+            <source src="{{ HERO_VIDEO_URL }}" type="video/mp4">
+        </video>
 
-        <!-- Overlay -->
         <div class="hero__overlay"></div>
 
-        <!-- Content -->
         <div class="hero__content">
             <p class="hero__subtitle">Welcome to</p>
             <h1 class="hero__title">Mountain <span>Shadow</span></h1>
@@ -67,603 +58,363 @@
             </a>
         </div>
 
-        <!-- Scroll indicator -->
         <div class="scroll-indicator">
             <span class="scroll-indicator__text">Scroll</span>
             <span class="scroll-indicator__line"></span>
         </div>
     </section>
 
-    <!-- ============ GALLERY ============ -->
     <section class="section" id="gallery">
         <div class="section__inner">
-    
             <h2 class="section__title">Captivating Moments</h2>
             <p class="section__text">Immerse yourself in the stunning vistas and exquisite spaces that make Mountain
                 Shadow a world-class destination.</p>
         </div>
         <div class="gallery-grid">
 
-  <div class="gallery-card">
-    <img src="{% static 'images/ms1.jpg' %}">
-    <div class="gallery-overlay">
-      <h3>Luxury Villas</h3>
-      <p>Mountain View</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/ms1.jpg' %}" alt="Luxury villas with mountain view" width="600" height="400" fetchpriority="high">
+                <div class="gallery-overlay">
+                    <h3>Luxury Villas</h3>
+                    <p>Mountain View</p>
+                </div>
+            </div>
 
-  <div class="gallery-card">
-    <img src="{% static 'images/ms2.jpg' %}">
-    <div class="gallery-overlay">
-      <h3>Private Beach</h3>
-      <p>Crystal Waters</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/ms2.jpg' %}" alt="Private beach with crystal waters" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Private Beach</h3>
+                    <p>Crystal Waters</p>
+                </div>
+            </div>
 
-  <div class="gallery-card">
-    <img src="{% static 'images/ms3.jpg' %}">
-    <div class="gallery-overlay">
-      <h3>Infinity Pool</h3>
-      <p>Relax & Refresh</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/ms3.jpg' %}" alt="Infinity pool" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Infinity Pool</h3>
+                    <p>Relax & Refresh</p>
+                </div>
+            </div>
 
-  <div class="gallery-card">
-    <img src="{% static 'images/ms4.jpg' %}">
-    <div class="gallery-overlay">
-      <h3>Luxury Rooms</h3>
-      <p>Premium Stay</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/ms4.jpg' %}" alt="Luxury rooms" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Luxury Rooms</h3>
+                    <p>Premium Stay</p>
+                </div>
+            </div>
 
-  <div class="gallery-card">
-    <img src="{% static 'images/ms4.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/mshall.jpg' %}" alt="Resort hall ambience" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Grand Hall</h3>
+                    <p>Unmatchable Ambience</p>
+                </div>
+            </div>
 
-    <div class="gallery-card">
-    <img src="{% static 'images/mshall.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/mschair.jpg' %}" alt="Luxury seating area" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Lounge</h3>
+                    <p>Refined Comfort</p>
+                </div>
+            </div>
 
-    <div class="gallery-card">
-    <img src="{% static 'images/mschair.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/mskitchen.jpg' %}" alt="Resort kitchen" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Kitchen</h3>
+                    <p>Culinary Craft</p>
+                </div>
+            </div>
 
-    <div class="gallery-card">
-    <img src="{% static 'images/ms2.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/mssofa.jpg' %}" alt="Luxury sofa lounge" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Suite Living</h3>
+                    <p>Elegant Design</p>
+                </div>
+            </div>
 
-    <div class="gallery-card">
-    <img src="{% static 'images/mskitchen.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
+            <div class="gallery-card">
+                <img src="{% static 'images/msfan.jpg' %}" alt="Resort interior detail" loading="lazy" width="600" height="400">
+                <div class="gallery-overlay">
+                    <h3>Interiors</h3>
+                    <p>Thoughtful Details</p>
+                </div>
+            </div>
 
-<div class="gallery-card">
-    <img src="{% static 'images/mssofa.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
-
-<div class="gallery-card">
-    <img src="{% static 'images/msfan.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
-
-<div class="gallery-card">
-    <img src="{% static 'images/mskitchen.jpg' %}">
-    <div class="gallery-overlay"> 
-        <h3>ambience</h3>
-        <p>unmatchable</p>
-    </div>
-  </div>
-
-
-
-
-
-</div>
-
+        </div>
     </section>
 
-    <!-- ============ ABOUT ============ -->
     <section class="about-hero" id="about">
-
-  <div class="about-overlay"></div>
-
-  <div class="about-content">
-    <h2 class="section__title">A Legacy of Elegance</h2>
-
-    <p class="section__text">
-      Nestled along a pristine coastline, Mountain Shadow offers an unrivalled blend of natural beauty and refined luxury. 
-      Every experience is thoughtfully curated to deliver comfort, elegance, and unforgettable moments.
-    </p>
-  </div>
-  
-
-</section>
-<div class="team-section">
-
-  <h3 class="team-title">Meet Our Team</h3>
-
-  <div class="team-grid">
-
-    <div class="team-card">
-      <img src="{% static 'images/chef.png' %}">
-      <h4>Arjun Nair</h4>
-      <p class="role">Head Chef</p>
-      <p class="desc">Crafting world-class culinary experiences.</p>
-    </div>
-
-    <div class="team-card">
-      <img src="{% static 'images/manager.png' %}">
-      <h4>Priya Sharma</h4>
-      <p class="role">Resort Manager</p>
-      <p class="desc">Ensuring exceptional guest satisfaction.</p>
-    </div>
-
-    <div class="team-card">
-      <img src="{% static 'images/relation.png' %}">
-      <h4>Rahul Verma</h4>
-      <p class="role">Guest Relations</p>
-      <p class="desc">Delivering personalized hospitality.</p>
-    </div>
-
-  </div>
-
-</div>
-   <!-- ============ AWARDS ============ -->
-    <section class="award" id="award">
-        <div class="award-wrapper">
-          <div class="section__inner">
-            <h2 class="section__title">Awards &amp; Certification</h2>
-            <p class="section__text">Recognised by Forbes Travel Guide, Condé Nast Traveller, and the World Luxury Hotel
-                Awards for excellence in hospitality.</p>
+        <div class="about-overlay"></div>
+        <div class="about-content">
+            <h2 class="section__title">A Legacy of Elegance</h2>
+            <p class="section__text">
+                Nestled along a pristine coastline, Mountain Shadow offers an unrivalled blend of natural beauty and refined luxury.
+                Every experience is thoughtfully curated to deliver comfort, elegance, and unforgettable moments.
+            </p>
         </div>
     </section>
+
+    <div class="team-section">
+        <h3 class="team-title">Meet Our Team</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="{% static 'images/chef.png' %}" alt="Arjun Nair, Head Chef" loading="lazy" width="400" height="220">
+                <h4>Arjun Nair</h4>
+                <p class="role">Head Chef</p>
+                <p class="desc">Crafting world-class culinary experiences.</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'images/manager.png' %}" alt="Priya Sharma, Resort Manager" loading="lazy" width="400" height="220">
+                <h4>Priya Sharma</h4>
+                <p class="role">Resort Manager</p>
+                <p class="desc">Ensuring exceptional guest satisfaction.</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'images/relation.png' %}" alt="Rahul Verma, Guest Relations" loading="lazy" width="400" height="220">
+                <h4>Rahul Verma</h4>
+                <p class="role">Guest Relations</p>
+                <p class="desc">Delivering personalized hospitality.</p>
+            </div>
+        </div>
+    </div>
+
     <section class="section awards-section" id="award">
-
-
-  <div class="awards-grid">
-
-   <div class="award-card">
-
-  <div class="award-images">
-
-    <!-- LEFT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-    <!-- BIG CENTER -->
-    <img src="{% static 'images/award1.jpg' %}" class="main-award">
-
-    <!-- RIGHT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-
-  </div>
-
-  <h3>Forbes Travel Guide</h3>
-
-  <p>5-Star Luxury Resort</p>
-
-  <span>2025</span>
-
-</div>
-
-    <div class="award-card">
-
- <div class="award-images">
-
-    <!-- LEFT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-    <!-- BIG CENTER -->
-    <img src="{% static 'images/award1.jpg' %}" class="main-award">
-
-    <!-- RIGHT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-
-  </div>
-
-      <h3>World Luxury Hotel Awards</h3>
-      <p>Best Beach Resort</p>
-      <span>2024</span>
-    </div>
-
-    <div class="award-card">
-
-  <div class="award-images">
-
-    <!-- LEFT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-    <!-- BIG CENTER -->
-    <img src="{% static 'images/award1.jpg' %}" class="main-award">
-
-    <!-- RIGHT SMALL -->
-    <img src="{% static 'images/darkimage.jpg' %}" class="small-award">
-
-
-  </div>
-      <h3>TripAdvisor</h3>
-      <p>Traveler’s Choice Award</p>
-      <span>2025</span>
-    </div>
-
-  </div>
-
-</div>
-
-</section>
-    
-
-    
-
-
-  <!-- Your entire website code -->
-
-  <!-- MENU SCRIPT -->
-  <script>
-  function showMenu(type) {
-    const restaurant = document.getElementById("restaurantMenu");
-    const bar = document.getElementById("barMenu");
-
-    const buttons = document.querySelectorAll(".menu-btn");
-
-    buttons.forEach(btn => btn.classList.remove("active"));
-
-    if (type === "restaurant") {
-      restaurant.style.display = "grid";
-      bar.style.display = "none";
-      buttons[0].classList.add("active");
-    } else {
-      restaurant.style.display = "none";
-      bar.style.display = "grid";
-      buttons[1].classList.add("active");
-    }
-  }
-  </script>
-
-  
-    <!-- ============ RESTAURANT ============ -->
-
- <!-- ===== RESTAURANT HERO IMAGE ===== -->
-<section class="restaurant-hero" id="restaurant">
-
-  <!-- VIDEO -->
-  <video autoplay muted loop playsinline class="restaurant-video">
-      <source src="{% static 'videos/makingrestu.mp4' %}" type="video/mp4">
-  </video>
-
-  <!-- DARK LAYER -->
-  <div class="restaurant-overlay"></div>
-
-  <!-- CONTENT -->
-  <div class="restaurant-content">
-
-    <h2 class="section__title">Culinary Excellence</h2>
-
-    <p class="section__text">
-      From fresh seafood to gourmet international cuisine,
-      our chefs craft unforgettable dining experiences.
-    </p>
-
-  </div>
-
-</section>
-
-<script>
-function showMenu(type, btn) {
-
-  const slider = document.querySelector(".slider");
-
-  // 🔥 THIS LINE FIXES ANIMATION
-  slider.style.transform = type === "bar"
-    ? "translateX(100%)"
-    : "translateX(0)";
-
-  // menu switch
-  document.getElementById("restaurantMenu").style.display =
-    type === "restaurant" ? "grid" : "none";
-
-  document.getElementById("barMenu").style.display =
-    type === "bar" ? "grid" : "none";
-
-  // active button
-  document.querySelectorAll(".toggle-btn").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
-}
-</script>
-
-<!-- ===== MENU SECTION ===== -->
-<section class="menu-section">
-
-  <!-- Toggle Buttons -->
-  <div class="menu-toggle">
-  <div class="toggle-slider">
-    <div class="slider"></div>
-
-    <button class="toggle-btn active" onclick="showMenu('restaurant', this)">Restaurant</button>
-    <button class="toggle-btn" onclick="showMenu('bar', this)">Bar</button>
-  </div>
-</div>
-
-  <!-- Restaurant Menu -->
- <div id="restaurantMenu" class="menu-grid">
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/chicken.jpg' %}">
-    <div class="menu-info">
-      <h3>Grilled Chicken</h3>
-      <p>Herbs & butter sauce</p>
-      <span>₹450</span>
-    </div>
-  </a>
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/seafood.jpg' %}">
-    <div class="menu-info">
-      <h3>Seafood Platter</h3>
-      <p>Fresh prawns & crab</p>
-      <span>₹900</span>
-    </div>
-  </a>
-
-   <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/vej.jpg' %}">
-    <div class="menu-info">
-      <h3>Seafood Platter</h3>
-      <p>Fresh prawns & crab</p>
-      <span>₹900</span>
-    </div>
-  </a>
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/vej.jpg' %}">
-    <div class="menu-info">
-      <h3>Seafood Platter</h3>
-      <p>Fresh prawns & crab</p>
-      <span>₹900</span>
-    </div>
-  </a>
-
-</div>
-
-  </div>
-
-  <!-- Bar Menu -->
-  <div id="barMenu" class="menu-grid" style="display: none;">
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/cocktile.jpg' %}">
-    <div class="menu-info">
-      <h3>Signature Cocktail</h3>
-      <p>Fresh citrus blend</p>
-      <span>₹350</span>
-    </div>
-  </a>
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/redvine.jpg' %}">
-    <div class="menu-info">
-      <h3>Red Wine</h3>
-      <p>Imported premium selection</p>
-      <span>₹800</span>
-    </div>
-  </a>
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/craftbeer.jpg' %}">
-    <div class="menu-info">
-      <h3>Craft Beer</h3>
-      <p>Chilled & refreshing</p>
-      <span>₹250</span>
-    </div>
-  </a>
-
-  <a href="javascript:void(0)" class="menu-card">
-    <img src="{% static 'images/craftbeer.jpg' %}">
-    <div class="menu-info">
-      <h3>Craft Beer</h3>
-      <p>Chilled & refreshing</p>
-      <span>₹250</span>
-    </div>
-  </a>
-
-</div>
-
-</section>
-   <!-- ============ REVIEWS ============ -->
-<section class="reviews-section" id="reviews">
-
-    <div class="review-hero">
-
-        <div class="review-hero-content">
-
-            <h2 class="section__title">What Our Guests Say</h2>
-
+        <div class="award-wrapper">
+            <div class="section__inner">
+                <h2 class="section__title">Awards &amp; Certification</h2>
+                <p class="section__text">Recognised by Forbes Travel Guide, Condé Nast Traveller, and the World Luxury Hotel
+                    Awards for excellence in hospitality.</p>
+            </div>
+
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-images">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                        <img src="{% static 'images/award1.jpg' %}" class="main-award" alt="Forbes Travel Guide award" loading="lazy">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                    </div>
+                    <h3>Forbes Travel Guide</h3>
+                    <p>5-Star Luxury Resort</p>
+                    <span>2025</span>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-images">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                        <img src="{% static 'images/award1.jpg' %}" class="main-award" alt="World Luxury Hotel Awards" loading="lazy">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                    </div>
+                    <h3>World Luxury Hotel Awards</h3>
+                    <p>Best Beach Resort</p>
+                    <span>2024</span>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-images">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                        <img src="{% static 'images/award1.jpg' %}" class="main-award" alt="TripAdvisor award" loading="lazy">
+                        <img src="{% static 'images/darkimage.jpg' %}" class="small-award" alt="" loading="lazy">
+                    </div>
+                    <h3>TripAdvisor</h3>
+                    <p>Traveler's Choice Award</p>
+                    <span>2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="restaurant-hero" id="restaurant">
+        <video autoplay muted loop playsinline class="restaurant-video" preload="metadata">
+            <source src="{% static 'videos/makingrestu.mp4' %}" type="video/mp4">
+        </video>
+        <div class="restaurant-overlay"></div>
+        <div class="restaurant-content">
+            <h2 class="section__title">Culinary Excellence</h2>
             <p class="section__text">
-                "An extraordinary escape — the service, the views,
-                and the attention to detail surpassed every expectation."
-                — Travel & Leisure
+                From fresh seafood to gourmet international cuisine,
+                our chefs craft unforgettable dining experiences.
             </p>
+        </div>
+    </section>
 
+    <section class="menu-section">
+        <div class="menu-toggle">
+            <div class="toggle-slider">
+                <div class="slider"></div>
+                <button class="toggle-btn active" onclick="showMenu('restaurant', this)">Restaurant</button>
+                <button class="toggle-btn" onclick="showMenu('bar', this)">Bar</button>
+            </div>
         </div>
 
-    </div>
+        <div id="restaurantMenu" class="menu-grid">
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/chicken.jpg' %}" alt="Grilled Chicken" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Grilled Chicken</h3>
+                    <p>Herbs & butter sauce</p>
+                    <span>₹450</span>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/seafood.jpg' %}" alt="Seafood Platter" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Seafood Platter</h3>
+                    <p>Fresh prawns & crab</p>
+                    <span>₹900</span>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/vej.jpg' %}" alt="Garden Fresh Platter" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Garden Fresh Platter</h3>
+                    <p>Seasonal vegetables</p>
+                    <span>₹550</span>
+                </div>
+            </a>
+        </div>
 
-</section>
-    <script>
-const slider = document.querySelector(".reviews-slider");
+        <div id="barMenu" class="menu-grid" style="display: none;">
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/cocktile.jpg' %}" alt="Signature Cocktail" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Signature Cocktail</h3>
+                    <p>Fresh citrus blend</p>
+                    <span>₹350</span>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/redvine.jpg' %}" alt="Red Wine" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Red Wine</h3>
+                    <p>Imported premium selection</p>
+                    <span>₹800</span>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="menu-card">
+                <img src="{% static 'images/craftbeer.jpg' %}" alt="Craft Beer" loading="lazy" width="400" height="260">
+                <div class="menu-info">
+                    <h3>Craft Beer</h3>
+                    <p>Chilled & refreshing</p>
+                    <span>₹250</span>
+                </div>
+            </a>
+        </div>
+    </section>
 
-setInterval(() => {
-  slider.scrollBy({ left: 320, behavior: "smooth" });
-}, 3000);
-</script>
+    <section class="reviews-section" id="reviews">
+        <div class="review-hero">
+            <div class="review-hero-content">
+                <h2 class="section__title">What Our Guests Say</h2>
+                <p class="section__text">
+                    "An extraordinary escape — the service, the views,
+                    and the attention to detail surpassed every expectation."
+                    — Travel & Leisure
+                </p>
+            </div>
+        </div>
+    </section>
 
     <section class="guest-section">
-
-  <h2 class="section__title">Guest Experiences</h2>
-
-  <div class="reviews-slider">
-
-    <div class="review-card">
-      <img src="{% static 'images/passphoto.jpg' %}" class="review-img">
-      <h3>Rahul Sharma</h3>
-      <p class="location">Mumbai, India</p>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">
-        One of the best luxury stays I’ve experienced. The ambience and service were exceptional.
-      </p>
-    </div>
-
-    <div class="review-card">
-      <img src="{% static 'images/passphot2.jpg' %}" class="review-img">
-      <h3>Emily Watson</h3>
-      <p class="location">London, UK</p>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">
-        Absolutely stunning location with world-class hospitality. Highly recommended!
-      </p>
-    </div>
-
-    <div class="review-card">
-      <img src="{% static 'images/passphoto3.avif' %}" class="review-img">
-      <h3>Arjun Menon</h3>
-      <p class="location">Bangalore, India</p>
-      <div class="stars">★★★★★</div>
-      <p class="review-text">
-        The dining experience and views were unforgettable. Truly premium.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
- 
-    <!-- ============ CONTACT ============ -->
-    <section class="contact-hero" id="contact">
-        <div class="contact-oveerlay">
-    
-            
-            <h2 class="section__title">Get In Touch</h2>
-            <p class="section__text">We'd love to hear from you. Reach out to begin planning your unforgettable stay at
-                Mountain Shadow Resort.</p>
+        <h2 class="section__title">Guest Experiences</h2>
+        <div class="reviews-slider">
+            <div class="review-card">
+                <img src="{% static 'images/passphoto.jpg' %}" class="review-img" alt="Rahul Sharma" loading="lazy" width="70" height="70">
+                <h3>Rahul Sharma</h3>
+                <p class="location">Mumbai, India</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    One of the best luxury stays I've experienced. The ambience and service were exceptional.
+                </p>
+            </div>
+            <div class="review-card">
+                <img src="{% static 'images/passphot2.jpg' %}" class="review-img" alt="Emily Watson" loading="lazy" width="70" height="70">
+                <h3>Emily Watson</h3>
+                <p class="location">London, UK</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    Absolutely stunning location with world-class hospitality. Highly recommended!
+                </p>
+            </div>
+            <div class="review-card">
+                <img src="{% static 'images/passphoto3.avif' %}" class="review-img" alt="Arjun Menon" loading="lazy" width="70" height="70">
+                <h3>Arjun Menon</h3>
+                <p class="location">Bangalore, India</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    The dining experience and views were unforgettable. Truly premium.
+                </p>
+            </div>
         </div>
     </section>
-    
 
-  <div class="contact-grid">
+    <section class="contact-section" id="contact">
+        <div class="contact-hero">
+            <div class="contact-overlay"></div>
+            <div class="contact-hero-content">
+                <h2 class="section__title">Get In Touch</h2>
+                <p class="section__text">We'd love to hear from you. Reach out to begin planning your unforgettable stay at
+                    Mountain Shadow Resort.</p>
+            </div>
+        </div>
 
-    <div class="contact-card">
-      <h3>📍 Location</h3>
-      <p>Mountain Shadow Resort<br>Goa, India</p>
-    </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>📍 Location</h3>
+                <p>Mountain Shadow Resort<br>Goa, India</p>
+            </div>
+            <div class="contact-card">
+                <h3>📞 Call Us</h3>
+                <p>+91 98765 43210<br>+91 91234 56789</p>
+            </div>
+            <div class="contact-card">
+                <h3>✉ Email</h3>
+                <p>info@mountainshadow.com<br>support@mountainshadow.com</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="contact-card">
-      <h3>📞 Call Us</h3>
-      <p>+91 98765 43210<br>+91 91234 56789</p>
-    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col footer-brand">
+                <h2>MOUNTAIN <span>SHADOW</span></h2>
+                <p>
+                    Experience timeless luxury, breathtaking landscapes,
+                    world-class hospitality, and unforgettable moments
+                    crafted exclusively for you.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#restaurant">Restaurant</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>📍 Goa, India</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉ info@mountainshadow.com</p>
+                <div class="footer-socials">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Mountain Shadow Resort. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <div class="contact-card">
-      <h3>✉ Email</h3>
-      <p>info@mountainshadow.com<br>support@mountainshadow.com</p>
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- ============ FOOTER ============ -->
-   <footer class="footer">
-
-  <div class="footer-container">
-
-    <!-- LEFT -->
-    <div class="footer-col footer-brand">
-
-      <h2>MOUNTAIN <span>SHADOW</span></h2>
-
-      <p>
-        Experience timeless luxury, breathtaking landscapes,
-        world-class hospitality, and unforgettable moments
-        crafted exclusively for you.
-      </p>
-
-    </div>
-
-    <!-- CENTER -->
-    <div class="footer-col">
-
-      <h3>Quick Links</h3>
-
-      <ul>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#restaurant">Restaurant</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-    </div>
-
-    <!-- RIGHT -->
-    <div class="footer-col">
-
-      <h3>Contact</h3>
-
-      <p>📍 Goa, India</p>
-      <p>📞 +91 98765 43210</p>
-      <p>✉ info@mountainshadow.com</p>
-
-      <div class="footer-socials">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">YouTube</a>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- BOTTOM -->
-  <div class="footer-bottom">
-
-    <p>
-      © 2026 Mountain Shadow Resort. All rights reserved.
-    </p>
-
-  </div>
-
-</footer>
-
-        
-  
-
+    <script src="{% static 'js/main.js' %}" defer></script>
 </body>
 
 </html>

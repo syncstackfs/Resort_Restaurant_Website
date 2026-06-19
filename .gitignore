@@ -3,4 +3,9 @@
 *.pyo
 venv/
 .env
+.env.*
 db.sqlite3
+msresort/db.sqlite3
+msresort/staticfiles/
+*.log
+.DS_Store
