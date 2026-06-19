@@ -8,7 +8,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-gkw$=@!u4m$wk$k)0c73u
 # Default True for local dev; set DEBUG=False on Vercel/Railway production
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '.railway.app',
+    '.vercel.app',
+    'localhost',
+    '3.110.135.4',
+    '127.0.0.1',
+    'msresort.fahadfadhi.online'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
